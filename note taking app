@@ -1,0 +1,82 @@
+#import necessary modules
+import uuid
+from datetime import datetime
+#creating an empty notes list to store the notes
+notes = []
+#create note function
+def create_note(note_tittle,note_content):
+    #note tittle should not b empty
+    if note_tittle== "":
+        raise ("note tittle cannot be empty")
+    #note content should not be empty
+    if note_content == "":
+        raise ("note content should not be empty")
+    #note tittle should not be similar
+    for note in notes:
+        if note["note_tittle"] == note_tittle :
+            raise ("note tittle should be unique")
+    #note content should be unique
+    for note in notes:
+        if note["note_content"] == note_content:
+            raise ("note content should not be similar")
+
+    #note properties
+    note = {
+        "note_id":str(uuid.uuid4()),
+        "note_tittle": note_tittle,
+        "note_content": note_content,
+        "created_at":datetime.now(),
+        "updated_at":None
+        }
+    #add the note to the list of notes
+    notes.append(note)
+
+
+#note view function
+def note_view(note_id):
+    for note in notes:
+        if note["note_id"] == note_id:
+            return note
+
+#note delete function
+def note_delete(note_id):
+    is_deleted = False
+    for note in notes:
+        if note["note_id"] == note_id:
+            notes.remove(note)
+            is_deleted = True
+        if is_deleted == True:
+            return ("note has been deleted")
+        else:
+            return ("note has not been deleted")
+
+#notes list function
+def note_list():
+    return notes
+
+#note tittle query
+def note_query(note_tittle):
+    for note in notes:
+        if note["note_tittle"] == note_tittle:
+            return note
+
+#note query 2
+def note_query2(query_string):
+    notes_found = []
+    for note in notes:
+        if query_string in note["note_content"]:
+            notes_found.append(note)
+
+    return notes_found
+
+def list_note_parameter(limit = 3):
+    return notes[:limit]
+
+def note_query2_parameter(query_string,limit = 1):
+    notes_found = []
+    for note in notes:
+        if query_string in note["note_content"]:
+            notes_found.append(note)
+
+    return notes_found[:limit]
+

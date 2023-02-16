@@ -80,3 +80,15 @@ def note_query2_parameter(query_string,limit = 1):
 
     return notes_found[:limit]
 
+
+
+def next(page, notes, limit=3):
+    total_notes = len(notes)
+    total_pages = math.ceil(total_notes / limit)
+
+    if page < 1 or page > total_pages:
+        raise ValueError("Invalid page number")
+
+    start_index = (page - 1) * limit
+    end_index = min(start_index + limit, total_notes)
+    return notes[start_index:end_index]

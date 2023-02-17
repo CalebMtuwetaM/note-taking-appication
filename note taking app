@@ -1,20 +1,27 @@
 #import necessary modules
 import uuid
+import math
 from datetime import datetime
+
 #creating an empty notes list to store the notes
 notes = []
+
 #create note function
 def create_note(note_tittle,note_content):
+    
     #note tittle should not b empty
     if note_tittle== "":
         raise ("note tittle cannot be empty")
+    
     #note content should not be empty
     if note_content == "":
         raise ("note content should not be empty")
+    
     #note tittle should not be similar
     for note in notes:
         if note["note_tittle"] == note_tittle :
             raise ("note tittle should be unique")
+    
     #note content should be unique
     for note in notes:
         if note["note_content"] == note_content:
@@ -28,6 +35,7 @@ def create_note(note_tittle,note_content):
         "created_at":datetime.now(),
         "updated_at":None
         }
+    
     #add the note to the list of notes
     notes.append(note)
 

@@ -69,9 +69,11 @@ def note_query2(query_string):
 
     return notes_found
 
+#note list parameter
 def list_note_parameter(limit = 3):
     return notes[:limit]
 
+#note query parameter 
 def note_query2_parameter(query_string,limit = 1):
     notes_found = []
     for note in notes:
@@ -81,7 +83,7 @@ def note_query2_parameter(query_string,limit = 1):
     return notes_found[:limit]
 
 
-
+#pagination how to limit the number of notes visible in a single page 
 def next(page, notes, limit=3):
     total_notes = len(notes)
     total_pages = math.ceil(total_notes / limit)
@@ -92,3 +94,6 @@ def next(page, notes, limit=3):
     start_index = (page - 1) * limit
     end_index = min(start_index + limit, total_notes)
     return notes[start_index:end_index]
+
+
+

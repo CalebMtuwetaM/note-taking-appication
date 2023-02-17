@@ -26,3 +26,5 @@ print(newnoteapp.note_query2("Make"))
 print(newnoteapp.list_note_parameter())
 #to limit the note search by a specific number
 print(newnoteapp.note_query2_parameter("to"))
+#pagination that limits the number of notes in a page 
+print(newnoteapp.next(3,newnoteapp.notes))

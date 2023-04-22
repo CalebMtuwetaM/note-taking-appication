@@ -64,9 +64,10 @@ def find_note_by_ID(note_id):
         if note["note_id"] == note_id:
             note_ = note
             is_note_found = True
-            break
+    if is_note_found == False:
+        raise ValueError("note has not been created")
 
-    return is_note_found,note_
+
 #note view function
 def note_view(note_id):
     is_note_found,note_ = find_note_by_ID(note_id)
@@ -137,3 +138,5 @@ def next(page, notes, limit=3):
     start_index = (page - 1) * limit
     end_index = min(start_index + limit, total_notes)
     return notes[start_index:end_index]
+
+import running_noteapp_with_csv_file

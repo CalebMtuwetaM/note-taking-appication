@@ -40,11 +40,11 @@ def create_note(note_tittle,note_content):
     #note tittle should not be similar
     for note in notes:
         if note["note_tittle"] == note_tittle :
-            raise ("note tittle should be unique")
+            raise (ValueError)
     #note content should be unique
     for note in notes:
         if note["note_content"] == note_content:
-            raise ("note content should not be similar")
+            raise (ValueError)
 
     #note properties
     note = {
@@ -72,7 +72,7 @@ def find_note_by_ID(note_id):
 def note_view(note_id):
     is_note_found,note_ = find_note_by_ID(note_id)
     if not is_note_found:
-        raise("the note with the note id not found")
+        raise(ValueError)
     return note_
 
 #note delete function
@@ -81,10 +81,9 @@ def note_delete(note_id):
     is_note_found,note_ = find_note_by_ID(note_id)
     notes.remove(note_)
     is_deleted = True
-    if is_deleted == True:
-        return ("note has been deleted")
-    else:
-        return ("note has not been deleted")
+    if is_deleted == False:
+        raise ValueError("note with the note id not deleted")
+
 
 #notes list function
 def note_list():
